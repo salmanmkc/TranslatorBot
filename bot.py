@@ -16,7 +16,7 @@ def get_help_message(language):
         #these should be pulled in from json or similar files. json is already a dependency so best to stick with it.
         help_message = "All commands can be used by mentioning this bot." \
                    "To view this message you can mention this bot with the message '-h English' or 'help English'" \
-                   "To translate a previously sent message simply react to it with a flag emoji. " \
+                   "To translate a previously sent message, simply react to it with a flag emoji. " \
                    "Below is a list of supported languages and their flags: \n"\
                    ":flag_us: English | US\n"\
                    ":flag_in: Hindi | IN\n"\
