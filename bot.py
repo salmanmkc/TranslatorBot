@@ -10,23 +10,32 @@ client = discord.Client()
 
 requesting_user = ""
 
-# United States Flag = english
-# Indian Flag = Hindi
-# Spanish Flag = Spanish
-# German Flag = German
-# French Flag = French
-
-help_message = "To translate a message simply react to it with a flag emoji." \
-               "List of supported languages and their flags: \n"\
-               ":flag_us: English | US\n"\
-               ":flag_in: Hindi | IN\n"\
-               ":flag_es: Spanish | ES\n"\
-               ":flag_de: German | DE\n"\
-               ":flag_mf: French | MF\n"\
-               ":flag_pt: Portuguese | PT\n"\
-               ":flag_ru: Russia | RU\n"\
-               ":flag_jp: Japanese | JP\n"\
-               "More languages will be supported in future releases."
+def get_help_message(language):
+    #these should be pulled in from json or similar files. json is already a dependency so best to stick with it.
+    help_message_en = "All commands can be used by mentioning this bot." \
+                   "To view this message you can mention this bot with the message '-h English' or 'help English'" \
+                   "To translate a previously sent message simply react to it with a flag emoji. " \
+                   "Below is a list of supported languages and their flags: \n"\
+                   ":flag_us: English | US\n"\
+                   ":flag_in: Hindi | IN\n"\
+                   ":flag_es: Spanish | ES\n"\
+                   ":flag_de: German | DE\n"\
+                   ":flag_mf: French | MF\n"\
+                   ":flag_pt: Portuguese | PT\n"\
+                   ":flag_ru: Russian | RU\n"\
+                   ":flag_jp: Japanese | JP\n"\
+                   "More languages will be supported in future releases."
+                   
+    #help_message_en is being used as a placeholder. they should be pulled from json and set to help_message_LANGUAGE.CODE.
+    if language == "English": return help_message_en
+    if language == "Hindi" or lanuage == "हिन्दी": return help_message_en
+    if language == "Spanish" or lanuage == "Español": return help_message_en
+    if language == "German" or lanuage == "Deutsche": return help_message_en
+    if language == "French" or lanuage == "français": return help_message_en
+    if language == "Portuguese" or lanuage == "Português": return help_message_en
+    if language == "Russian" or lanuage == "русский": return help_message_en
+    if language == "Japanese" or lanuage == "日本語": return help_message_en
+        
 
 def get_country(flag):
     with open("required_data.json", "r") as datafile:
@@ -95,15 +104,15 @@ async def on_reaction_add(reaction, user):
 async def on_message(message):
     content = message.content
     list_content = str(content).split()
-    if len(list_content) == 2 and list_content[1] == "help":
-        mentions = message.raw_mentions
-        if mentions is not None:
-            for mention in mentions:
-                if mention == client.user.id:
-                    if message.author.dm_channel is None:
-                        await message.author.create_dm()
-                    await message.author.dm_channel.send(help_message)
-
+    if list_content[1] == "help" or list_content[1] == "-h":
+        if len(list_content) == 3:
+            mentions = message.raw_mentions
+            if mentions is not None:
+                for mention in mentions:
+                    if mention == client.user.id:
+                        if message.author.dm_channel is None:
+                            await message.author.create_dm()
+                        await message.author.dm_channel.send(get_help_message(list_content[3]))
     return
 
 
