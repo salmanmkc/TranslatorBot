@@ -10,9 +10,11 @@ client = discord.Client()
 
 requesting_user = ""
 
-def get_help_message(language):
-    #these should be pulled in from json or similar files. json is already a dependency so best to stick with it.
-    help_message_en = "All commands can be used by mentioning this bot." \
+def get_help_message(language):                   
+    #help_message_en is being used as a placeholder. they should be pulled from json and set to help_message_LANGUAGE.CODE.
+    if language == "English":
+        #these should be pulled in from json or similar files. json is already a dependency so best to stick with it.
+        help_message = "All commands can be used by mentioning this bot." \
                    "To view this message you can mention this bot with the message '-h English' or 'help English'" \
                    "To translate a previously sent message simply react to it with a flag emoji. " \
                    "Below is a list of supported languages and their flags: \n"\
@@ -25,16 +27,28 @@ def get_help_message(language):
                    ":flag_ru: Russian | RU\n"\
                    ":flag_jp: Japanese | JP\n"\
                    "More languages will be supported in future releases."
-                   
-    #help_message_en is being used as a placeholder. they should be pulled from json and set to help_message_LANGUAGE.CODE.
-    if language == "English": return help_message_en
-    if language == "Hindi" or lanuage == "हिन्दी": return help_message_en
-    if language == "Spanish" or lanuage == "Español": return help_message_en
-    if language == "German" or lanuage == "Deutsche": return help_message_en
-    if language == "French" or lanuage == "français": return help_message_en
-    if language == "Portuguese" or lanuage == "Português": return help_message_en
-    if language == "Russian" or lanuage == "русский": return help_message_en
-    if language == "Japanese" or lanuage == "日本語": return help_message_en
+        return help_message
+    elif language == "Hindi" or lanuage == "हिन्दी":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
+    elif language == "Spanish" or lanuage == "Español":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
+    elif language == "German" or lanuage == "Deutsche":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
+    elif language == "French" or lanuage == "français":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
+    elif language == "Portuguese" or lanuage == "Português":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
+    elif language == "Russian" or lanuage == "русский":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
+    elif language == "Japanese" or lanuage == "日本語":
+        help_message = "Support for this language has not been implemented yet." #import message from json
+        return help_message
         
 
 def get_country(flag):
